@@ -1,1 +1,1 @@
-# foresight-client-sdk
+# foresight-nodejs-client

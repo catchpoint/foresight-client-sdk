@@ -1,0 +1,49 @@
+name: sync-api-pr
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_spec_url:
+        description: "Api Spec Url"
+        required: true
+        default: "https://api.service.runforesight.us/v2/api-docs"
+  
+jobs:
+  tryer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          token: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}
+      - name: Configure Git User
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      - name: Set up Node 14.x 
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+      - name: Install openapi-generator-cli
+        run: npm install @openapitools/openapi-generator-cli -g
+      - name: Create Branch
+        run: git checkout -b 'feature/sync-repo'
+      - name: Get Api Spec
+        run: wget ${{ github.event.inputs.api_spec_url }} -O api-spec.json
+      - name: Validate Api Spec
+        run: openapi-generator-cli validate -i ./api-spec.json
+      - name: Clear Old Files
+        run: find ./src -type f ! -name "*.openapi-generator-ignore" -exec rm {} \;
+      - name: Generate Client
+        run: openapi-generator-cli generate -i ./api-spec.json -g typescript-axios -o ./src
+      - name: git status
+        run: git status
+      - name: git add
+        run: git add src/**
+      - name: git commit
+        run: git commit -m "Repo Sync"
+      - name: git pusg
+        run: git push origin feature/sync-repo
+      - name: create pull request
+        run: gh pr create -B master -H 'feature/sync-repo' --title 'Repo Sync' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}
