@@ -41,7 +41,7 @@ jobs:
         run: git add src/**
       - name: git commit
         run: git commit -m "Repo Sync"
-      - name: git pusg
+      - name: git push
         run: git push origin feature/sync-repo
       - name: create pull request
         run: gh pr create -B master -H 'feature/sync-repo' --title 'Repo Sync' --body 'Created by Github action'
