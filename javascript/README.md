@@ -1,11 +1,11 @@
-#### Foresight Node.js Client
+#### Foresight Javascript Client
 
-Node.js client for programmatically integration with Foresight.
+Javascript client for programmatically integration with Foresight.
 
 #### Installation
 
 ```bash
-npm install -g @runforesight/foresight-nodejs-client
+npm install -g @runforesight/foresight-javascript-client
 ```
 
 ##### Local Build
