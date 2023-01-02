@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./node-sdk
+        working-directory: ./javascript
     steps:
       - uses: actions/checkout@v3
         with: 
