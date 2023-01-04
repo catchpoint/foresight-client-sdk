@@ -30,6 +30,7 @@ APIKEY must be configured like below.
 import * as api from 'foresight-client-sdk';
 
 const apiKey = 'ApiKey <YOUR_APIKEY>';
+const basePath = 'https://api.service.runforesight.com';
 
 (async() => {
     const projectApi = new api.ProjectsApi(new api.Configuration({
