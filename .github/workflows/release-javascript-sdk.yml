@@ -1,4 +1,4 @@
-name: release
+name: release-node-client
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
         - major
 
 jobs:
-  build:
+  release-node-client:
     runs-on: ubuntu-latest
     defaults:
       run:

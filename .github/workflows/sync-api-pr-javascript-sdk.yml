@@ -1,4 +1,4 @@
-name: sync-api-pr
+name: sync-api-javascript-pr
 
 on:
   workflow_dispatch:
@@ -9,7 +9,7 @@ on:
         default: "https://api.service.runforesight.us/v2/api-docs"
   
 jobs:
-  tryer:
+  sync-api-javascript-pr:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -29,7 +29,7 @@ jobs:
       - name: Install openapi-generator-cli
         run: npm install @openapitools/openapi-generator-cli -g
       - name: Create Branch
-        run: git checkout -b 'feature/sync-repo'
+        run: git checkout -b 'feature/sync-repo-javascript'
       - name: Get Api Spec
         run: wget ${{ github.event.inputs.api_spec_url }} -O api-spec.json
       - name: Validate Api Spec
@@ -43,10 +43,10 @@ jobs:
       - name: git add
         run: git add src/**
       - name: git commit
-        run: git commit -m "Repo Sync"
+        run: git commit -m "Repo Sync Javascript"
       - name: git push
-        run: git push origin feature/sync-repo
+        run: git push origin feature/sync-repo-javascript
       - name: create pull request
-        run: gh pr create -B master -H 'feature/sync-repo' --title 'Repo Sync' --body 'Created by Github action'
+        run: gh pr create -B master -H 'feature/sync-repo-javascript' --title 'Repo Sync Javascript' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}

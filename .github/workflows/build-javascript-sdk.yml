@@ -1,12 +1,14 @@
-name: build
+name: build-javascript-client
 
 on:
   pull_request:
     branches: [master]
+    paths:
+      - 'javascript/**'
   workflow_dispatch:
 
 jobs:
-  build:
+  build-javascript-client:
     runs-on: ubuntu-latest
     defaults:
       run:

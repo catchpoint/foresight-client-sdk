@@ -1,0 +1,56 @@
+name: release-java-client
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_scale:
+        description: "Version scale"
+        required: true
+        default: "patch"
+jobs:
+  release-java-client:
+    name: Release to Maven Central
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./java
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.FORESIGHT_DEVOPS_GITHUB_ACCESS_TOKEN }}
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'corretto'
+      - name: Configure CI Git User
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      - name: Configure Maven settings.xml
+        uses: whelk-io/maven-settings-xml-action@v14
+        with:
+          servers: >-
+            [
+              {
+                "id": "ossrh",
+                "username": "${{ secrets.FORESIGHT_SONATYPE_NEXUS_USERNAME}}",
+                "password": "${{ secrets.FORESIGHT_SONATYPE_NEXUS_PASSWORD}}"
+              }
+            ]
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v3
+        with:
+          gpg-private-key: ${{ secrets.FORESIGHT_GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.FORESIGHT_GPG_PASSPHRASE}}
+      - name: Increase Minor Version
+        if: ${{ github.event.inputs.version_scale == 'minor' }}
+        run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.nextMinorVersion}.0-SNAPSHOT versions:commit
+      - name: Increase Major Version
+        if: ${{ github.event.inputs.version_scale == 'major' }}
+        run: mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.nextMajorVersion}.0.0-SNAPSHOT versions:commit
+      - name: Build and Release with Maven
+        env:
+          GITHUB_TOKEN: ${{ secrets.FORESIGHT_DEVOPS_GITHUB_ACCESS_TOKEN }}
+        run: mvn clean package release:clean release:prepare release:perform release:clean --batch-mode -P release
