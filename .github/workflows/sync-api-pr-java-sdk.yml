@@ -51,6 +51,6 @@ jobs:
       - name: git push
         run: git push origin feature/sync-repo-java
       - name: create pull request
-        run: gh pr create -B master -H 'feature/sync-repo-java' --title 'Repo Sync Java' --body 'Created by Github action'
+        run: gh pr create -B master -H 'feature/sync-repo-java' --title 'Sync Java SDK with Foresight API' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}
