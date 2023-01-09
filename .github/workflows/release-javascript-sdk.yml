@@ -1,4 +1,4 @@
-name: release-node-client
+name: release-javascript-client
 
 on:
   workflow_dispatch:
