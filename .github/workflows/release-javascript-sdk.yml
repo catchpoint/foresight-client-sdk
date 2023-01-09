@@ -1,0 +1,42 @@
+name: release-node-client
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_scale:
+        type: choice
+        description: Release Scale
+        options:
+        - patch
+        - minor
+        - major
+
+jobs:
+  release-node-client:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./javascript
+    steps:
+      - uses: actions/checkout@v3
+        with: 
+          token: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}
+      - name: Configure Git User
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: "14.x"
+          registry-url: https://registry.npmjs.org
+      - name: NPM Install
+        run: npm install
+      - name: NPM Build
+        run: npm run build
+      - name: NPM Publish
+        run: npm run release
+        env:
+          RELEASE_SCALE: ${{ github.event.inputs.version_scale }}
+          NODE_AUTH_TOKEN: ${{ secrets.FORESIGHT_NPM_PUBLISH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}

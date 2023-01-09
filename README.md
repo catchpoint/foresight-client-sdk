@@ -1,1 +1,0 @@
-# foresight-client-sdk
