@@ -18,6 +18,10 @@
     "type": "git",
     "url": "git+https://github.com/runforesight/foresight-client-sdk.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "keywords": [],
   "author": "Foresight",
   "license": "Apache-2.0",
