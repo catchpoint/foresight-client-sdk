@@ -30,7 +30,7 @@ jobs:
       - name: Install openapi-generator-cli
         run: npm install @openapitools/openapi-generator-cli -g
       - name: Create Branch
-        run: git checkout -b 'feature/sync-repo-java'
+        run: git checkout -b 'feature/sync-repo-java-${{github.run_id}}'
       - name: Get Api Spec
         run: wget ${{ github.event.inputs.api_spec_url }} -O api-spec.json
       - name: Validate Api Spec
@@ -49,8 +49,8 @@ jobs:
       - name: git commit
         run: git commit -m "Sync Java SDK with Foresight API"
       - name: git push
-        run: git push origin feature/sync-repo-java
+        run: git push origin feature/sync-repo-java-${{github.run_id}}
       - name: create pull request
-        run: gh pr create -B master -H 'feature/sync-repo-java' --title 'Sync Java SDK with Foresight API' --body 'Created by Github action'
+        run: gh pr create -B master -H 'feature/sync-repo-java-${{github.run_id}}' --title 'Sync Java SDK with Foresight API' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}
