@@ -67,6 +67,19 @@ export interface AttributeDto {
 /**
  * 
  * @export
+ * @interface BranchDto
+ */
+export interface BranchDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof BranchDto
+     */
+    'branchName'?: string;
+}
+/**
+ * 
+ * @export
  * @interface CPUMetricDto
  */
 export interface CPUMetricDto {
@@ -92,31 +105,31 @@ export interface CPUMetricDto {
 /**
  * 
  * @export
- * @interface CompletableFutureVoid
+ * @interface CompletableFutureOfVoid
  */
-export interface CompletableFutureVoid {
+export interface CompletableFutureOfVoid {
     /**
      * 
      * @type {boolean}
-     * @memberof CompletableFutureVoid
+     * @memberof CompletableFutureOfVoid
      */
     'cancelled'?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof CompletableFutureVoid
+     * @memberof CompletableFutureOfVoid
      */
     'completedExceptionally'?: boolean;
     /**
      * 
      * @type {boolean}
-     * @memberof CompletableFutureVoid
+     * @memberof CompletableFutureOfVoid
      */
     'done'?: boolean;
     /**
      * 
      * @type {number}
-     * @memberof CompletableFutureVoid
+     * @memberof CompletableFutureOfVoid
      */
     'numberOfDependents'?: number;
 }
@@ -157,6 +170,43 @@ export interface DiskMetricDto {
      * @memberof DiskMetricDto
      */
     'diskIOWxMb'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface ErroneousWorkflowDto
+ */
+export interface ErroneousWorkflowDto {
+    /**
+     * 
+     * @type {{ [key: string]: number; }}
+     * @memberof ErroneousWorkflowDto
+     */
+    'errorCounts'?: { [key: string]: number; };
+    /**
+     * 
+     * @type {string}
+     * @memberof ErroneousWorkflowDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ErroneousWorkflowDto
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {RepoDto}
+     * @memberof ErroneousWorkflowDto
+     */
+    'repo'?: RepoDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof ErroneousWorkflowDto
+     */
+    'totalErrorCount'?: number;
 }
 /**
  * 
@@ -330,6 +380,122 @@ export interface ProjectSummaryDto {
      * @memberof ProjectSummaryDto
      */
     'projectName'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface RepoDto
+ */
+export interface RepoDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'accountOwnerUserAccountId'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RepoDto
+     */
+    'createdAt'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'defaultBranch'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'fullName'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'owner'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'provider'?: RepoDtoProviderEnum;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RepoDto
+     */
+    'publiclyAccessible'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'repoInformedStatus'?: RepoDtoRepoInformedStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoDto
+     */
+    'userId'?: string;
+}
+
+export const RepoDtoProviderEnum = {
+    Git: 'GIT',
+    Github: 'GITHUB',
+    Gitlab: 'GITLAB',
+    Bitbucket: 'BITBUCKET',
+    Azure: 'AZURE',
+    Travisci: 'TRAVISCI',
+    Circleci: 'CIRCLECI',
+    Jenkins: 'JENKINS',
+    Codebuild: 'CODEBUILD'
+} as const;
+
+export type RepoDtoProviderEnum = typeof RepoDtoProviderEnum[keyof typeof RepoDtoProviderEnum];
+export const RepoDtoRepoInformedStatusEnum = {
+    Initial: 'INITIAL',
+    Started: 'STARTED',
+    Completed: 'COMPLETED',
+    CompletedWithNoWorkflow: 'COMPLETED_WITH_NO_WORKFLOW',
+    Error: 'ERROR'
+} as const;
+
+export type RepoDtoRepoInformedStatusEnum = typeof RepoDtoRepoInformedStatusEnum[keyof typeof RepoDtoRepoInformedStatusEnum];
+
+/**
+ * 
+ * @export
+ * @interface RepoSearchDto
+ */
+export interface RepoSearchDto {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RepoSearchDto
+     */
+    'branches'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RepoSearchDto
+     */
+    'repoId'?: string;
 }
 /**
  * 
@@ -519,54 +685,261 @@ export interface WatchRepoDto {
 /**
  * 
  * @export
- * @interface WorkflowJobMetricDtoCPUMetricDto
+ * @interface WatchedRepoFilterDto
  */
-export interface WorkflowJobMetricDtoCPUMetricDto {
+export interface WatchedRepoFilterDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof WatchedRepoFilterDto
+     */
+    'repoId'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowDto
+ */
+export interface WorkflowDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowDto
+     */
+    'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowHighlightsQueryDto
+ */
+export interface WorkflowHighlightsQueryDto {
+    /**
+     * 
+     * @type {Array<BranchDto>}
+     * @memberof WorkflowHighlightsQueryDto
+     */
+    'branches'?: Array<BranchDto>;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowHighlightsQueryDto
+     */
+    'projectId'?: string;
+    /**
+     * 
+     * @type {Array<WatchedRepoFilterDto>}
+     * @memberof WorkflowHighlightsQueryDto
+     */
+    'repos'?: Array<WatchedRepoFilterDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowHighlightsQueryDto
+     */
+    'size'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowHighlightsQueryDto
+     */
+    'timeRange'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowJobMetricDtoOfCPUMetricDto
+ */
+export interface WorkflowJobMetricDtoOfCPUMetricDto {
     /**
      * 
      * @type {{ [key: string]: CPUMetricDto; }}
-     * @memberof WorkflowJobMetricDtoCPUMetricDto
+     * @memberof WorkflowJobMetricDtoOfCPUMetricDto
      */
     'metrics'?: { [key: string]: CPUMetricDto; };
 }
 /**
  * 
  * @export
- * @interface WorkflowJobMetricDtoDiskMetricDto
+ * @interface WorkflowJobMetricDtoOfDiskMetricDto
  */
-export interface WorkflowJobMetricDtoDiskMetricDto {
+export interface WorkflowJobMetricDtoOfDiskMetricDto {
     /**
      * 
      * @type {{ [key: string]: DiskMetricDto; }}
-     * @memberof WorkflowJobMetricDtoDiskMetricDto
+     * @memberof WorkflowJobMetricDtoOfDiskMetricDto
      */
     'metrics'?: { [key: string]: DiskMetricDto; };
 }
 /**
  * 
  * @export
- * @interface WorkflowJobMetricDtoMemoryMetricDto
+ * @interface WorkflowJobMetricDtoOfMemoryMetricDto
  */
-export interface WorkflowJobMetricDtoMemoryMetricDto {
+export interface WorkflowJobMetricDtoOfMemoryMetricDto {
     /**
      * 
      * @type {{ [key: string]: MemoryMetricDto; }}
-     * @memberof WorkflowJobMetricDtoMemoryMetricDto
+     * @memberof WorkflowJobMetricDtoOfMemoryMetricDto
      */
     'metrics'?: { [key: string]: MemoryMetricDto; };
 }
 /**
  * 
  * @export
- * @interface WorkflowJobMetricDtoNetworkMetricDto
+ * @interface WorkflowJobMetricDtoOfNetworkMetricDto
  */
-export interface WorkflowJobMetricDtoNetworkMetricDto {
+export interface WorkflowJobMetricDtoOfNetworkMetricDto {
     /**
      * 
      * @type {{ [key: string]: NetworkMetricDto; }}
-     * @memberof WorkflowJobMetricDtoNetworkMetricDto
+     * @memberof WorkflowJobMetricDtoOfNetworkMetricDto
      */
     'metrics'?: { [key: string]: NetworkMetricDto; };
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowRunSummaryDto
+ */
+export interface WorkflowRunSummaryDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'conclusion'?: WorkflowRunSummaryDtoConclusionEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'createdAt'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'duration'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'provider'?: WorkflowRunSummaryDtoProviderEnum;
+    /**
+     * 
+     * @type {RepoDto}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'repo'?: RepoDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'repoId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'runId'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'status'?: WorkflowRunSummaryDtoStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'userAccountId'?: string;
+    /**
+     * 
+     * @type {WorkflowDto}
+     * @memberof WorkflowRunSummaryDto
+     */
+    'workflow'?: WorkflowDto;
+}
+
+export const WorkflowRunSummaryDtoConclusionEnum = {
+    ActionRequired: 'ACTION_REQUIRED',
+    Cancelled: 'CANCELLED',
+    Failure: 'FAILURE',
+    Neutral: 'NEUTRAL',
+    Success: 'SUCCESS',
+    Skipped: 'SKIPPED',
+    Stale: 'STALE',
+    TimedOut: 'TIMED_OUT',
+    Unknown: 'UNKNOWN'
+} as const;
+
+export type WorkflowRunSummaryDtoConclusionEnum = typeof WorkflowRunSummaryDtoConclusionEnum[keyof typeof WorkflowRunSummaryDtoConclusionEnum];
+export const WorkflowRunSummaryDtoProviderEnum = {
+    Github: 'GITHUB'
+} as const;
+
+export type WorkflowRunSummaryDtoProviderEnum = typeof WorkflowRunSummaryDtoProviderEnum[keyof typeof WorkflowRunSummaryDtoProviderEnum];
+export const WorkflowRunSummaryDtoStatusEnum = {
+    Queued: 'QUEUED',
+    InProgress: 'IN_PROGRESS',
+    Completed: 'COMPLETED',
+    Unknown: 'UNKNOWN'
+} as const;
+
+export type WorkflowRunSummaryDtoStatusEnum = typeof WorkflowRunSummaryDtoStatusEnum[keyof typeof WorkflowRunSummaryDtoStatusEnum];
+
+/**
+ * 
+ * @export
+ * @interface WorkflowSearchDto
+ */
+export interface WorkflowSearchDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowSearchDto
+     */
+    'endDate'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowSearchDto
+     */
+    'filterText'?: string;
+    /**
+     * 
+     * @type {Array<RepoSearchDto>}
+     * @memberof WorkflowSearchDto
+     */
+    'repos'?: Array<RepoSearchDto>;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowSearchDto
+     */
+    'startDate'?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof WorkflowSearchDto
+     */
+    'statuses'?: Array<string>;
 }
 /**
  * 
@@ -726,6 +1099,103 @@ export interface WorkflowTelemetryRequest {
      * @memberof WorkflowTelemetryRequest
      */
     'telemetryData'?: object;
+}
+/**
+ * 
+ * @export
+ * @interface WorkflowViewDto
+ */
+export interface WorkflowViewDto {
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'averageDuration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'executionCount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'failAverageDuration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'failCount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'failMedianDuration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'failP95Duration'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowViewDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WorkflowViewDto
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'otherCount'?: number;
+    /**
+     * 
+     * @type {RepoDto}
+     * @memberof WorkflowViewDto
+     */
+    'repo'?: RepoDto;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'successAverageDuration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'successCount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'successMedianDuration'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof WorkflowViewDto
+     */
+    'successP95Duration'?: number;
+    /**
+     * 
+     * @type {Array<WorkflowRunSummaryDto>}
+     * @memberof WorkflowViewDto
+     */
+    'workflowRuns'?: Array<WorkflowRunSummaryDto>;
 }
 
 /**
@@ -1529,7 +1999,7 @@ export const MetricsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getJobCPUMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoCPUMetricDto>> {
+        async getJobCPUMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoOfCPUMetricDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getJobCPUMetricsUsingGET(jobId, workflowRunId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1541,7 +2011,7 @@ export const MetricsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getJobDiskMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoDiskMetricDto>> {
+        async getJobDiskMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoOfDiskMetricDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getJobDiskMetricsUsingGET(jobId, workflowRunId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1553,7 +2023,7 @@ export const MetricsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getJobMemoryMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoMemoryMetricDto>> {
+        async getJobMemoryMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoOfMemoryMetricDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getJobMemoryMetricsUsingGET(jobId, workflowRunId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1565,7 +2035,7 @@ export const MetricsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getJobNetworkMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoNetworkMetricDto>> {
+        async getJobNetworkMetricsUsingGET(jobId: string, workflowRunId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WorkflowJobMetricDtoOfNetworkMetricDto>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getJobNetworkMetricsUsingGET(jobId, workflowRunId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1587,7 +2057,7 @@ export const MetricsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getJobCPUMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoCPUMetricDto> {
+        getJobCPUMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoOfCPUMetricDto> {
             return localVarFp.getJobCPUMetricsUsingGET(jobId, workflowRunId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1598,7 +2068,7 @@ export const MetricsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getJobDiskMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoDiskMetricDto> {
+        getJobDiskMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoOfDiskMetricDto> {
             return localVarFp.getJobDiskMetricsUsingGET(jobId, workflowRunId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1609,7 +2079,7 @@ export const MetricsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getJobMemoryMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoMemoryMetricDto> {
+        getJobMemoryMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoOfMemoryMetricDto> {
             return localVarFp.getJobMemoryMetricsUsingGET(jobId, workflowRunId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -1620,7 +2090,7 @@ export const MetricsApiFactory = function (configuration?: Configuration, basePa
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getJobNetworkMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoNetworkMetricDto> {
+        getJobNetworkMetricsUsingGET(jobId: string, workflowRunId: string, options?: any): AxiosPromise<WorkflowJobMetricDtoOfNetworkMetricDto> {
             return localVarFp.getJobNetworkMetricsUsingGET(jobId, workflowRunId, options).then((request) => request(axios, basePath));
         },
     };
@@ -2731,7 +3201,7 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async handleDoMetricsUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompletableFutureVoid>> {
+        async handleDoMetricsUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompletableFutureOfVoid>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.handleDoMetricsUsingPOST(workflowTelemetryRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2742,7 +3212,7 @@ export const TelemetryApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async handleDoProcessesUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompletableFutureVoid>> {
+        async handleDoProcessesUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CompletableFutureOfVoid>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.handleDoProcessesUsingPOST(workflowTelemetryRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2763,7 +3233,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        handleDoMetricsUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: any): AxiosPromise<CompletableFutureVoid> {
+        handleDoMetricsUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: any): AxiosPromise<CompletableFutureOfVoid> {
             return localVarFp.handleDoMetricsUsingPOST(workflowTelemetryRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -2773,7 +3243,7 @@ export const TelemetryApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        handleDoProcessesUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: any): AxiosPromise<CompletableFutureVoid> {
+        handleDoProcessesUsingPOST(workflowTelemetryRequest: WorkflowTelemetryRequest, options?: any): AxiosPromise<CompletableFutureOfVoid> {
             return localVarFp.handleDoProcessesUsingPOST(workflowTelemetryRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -2820,6 +3290,45 @@ export const WorkflowsApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
+         * @summary getErroneousWorkflow
+         * @param {WorkflowHighlightsQueryDto} query query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getErroneousWorkflowUsingPOST: async (query: WorkflowHighlightsQueryDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'query' is not null or undefined
+            assertParamExists('getErroneousWorkflowUsingPOST', 'query', query)
+            const localVarPath = `/api/v1/workflows/erroneous`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(query, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary getWorkflowStepHistories
          * @param {string} workflowId workflowId
          * @param {WorkflowStepHistoryRequestDto} requestDto requestDto
@@ -2861,6 +3370,45 @@ export const WorkflowsApiAxiosParamCreator = function (configuration?: Configura
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary getWorkflows
+         * @param {WorkflowSearchDto} dto dto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowsUsingPOST: async (dto: WorkflowSearchDto, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'dto' is not null or undefined
+            assertParamExists('getWorkflowsUsingPOST', 'dto', dto)
+            const localVarPath = `/api/v1/workflows`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication ApiKey required
+            await setApiKeyToObject(localVarHeaderParameter, "Authorization", configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(dto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -2873,6 +3421,17 @@ export const WorkflowsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary getErroneousWorkflow
+         * @param {WorkflowHighlightsQueryDto} query query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getErroneousWorkflowUsingPOST(query: WorkflowHighlightsQueryDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<ErroneousWorkflowDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getErroneousWorkflowUsingPOST(query, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary getWorkflowStepHistories
          * @param {string} workflowId workflowId
          * @param {WorkflowStepHistoryRequestDto} requestDto requestDto
@@ -2881,6 +3440,17 @@ export const WorkflowsApiFp = function(configuration?: Configuration) {
          */
         async getWorkflowStepHistoriesUsingPOST(workflowId: string, requestDto: WorkflowStepHistoryRequestDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WorkflowStepHistoryDto>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getWorkflowStepHistoriesUsingPOST(workflowId, requestDto, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
+         * @summary getWorkflows
+         * @param {WorkflowSearchDto} dto dto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getWorkflowsUsingPOST(dto: WorkflowSearchDto, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<WorkflowViewDto>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getWorkflowsUsingPOST(dto, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
     }
@@ -2895,6 +3465,16 @@ export const WorkflowsApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
+         * @summary getErroneousWorkflow
+         * @param {WorkflowHighlightsQueryDto} query query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getErroneousWorkflowUsingPOST(query: WorkflowHighlightsQueryDto, options?: any): AxiosPromise<Array<ErroneousWorkflowDto>> {
+            return localVarFp.getErroneousWorkflowUsingPOST(query, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary getWorkflowStepHistories
          * @param {string} workflowId workflowId
          * @param {WorkflowStepHistoryRequestDto} requestDto requestDto
@@ -2903,6 +3483,16 @@ export const WorkflowsApiFactory = function (configuration?: Configuration, base
          */
         getWorkflowStepHistoriesUsingPOST(workflowId: string, requestDto: WorkflowStepHistoryRequestDto, options?: any): AxiosPromise<Array<WorkflowStepHistoryDto>> {
             return localVarFp.getWorkflowStepHistoriesUsingPOST(workflowId, requestDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary getWorkflows
+         * @param {WorkflowSearchDto} dto dto
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowsUsingPOST(dto: WorkflowSearchDto, options?: any): AxiosPromise<Array<WorkflowViewDto>> {
+            return localVarFp.getWorkflowsUsingPOST(dto, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2916,6 +3506,18 @@ export const WorkflowsApiFactory = function (configuration?: Configuration, base
 export class WorkflowsApi extends BaseAPI {
     /**
      * 
+     * @summary getErroneousWorkflow
+     * @param {WorkflowHighlightsQueryDto} query query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowsApi
+     */
+    public getErroneousWorkflowUsingPOST(query: WorkflowHighlightsQueryDto, options?: AxiosRequestConfig) {
+        return WorkflowsApiFp(this.configuration).getErroneousWorkflowUsingPOST(query, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
      * @summary getWorkflowStepHistories
      * @param {string} workflowId workflowId
      * @param {WorkflowStepHistoryRequestDto} requestDto requestDto
@@ -2925,6 +3527,18 @@ export class WorkflowsApi extends BaseAPI {
      */
     public getWorkflowStepHistoriesUsingPOST(workflowId: string, requestDto: WorkflowStepHistoryRequestDto, options?: AxiosRequestConfig) {
         return WorkflowsApiFp(this.configuration).getWorkflowStepHistoriesUsingPOST(workflowId, requestDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary getWorkflows
+     * @param {WorkflowSearchDto} dto dto
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowsApi
+     */
+    public getWorkflowsUsingPOST(dto: WorkflowSearchDto, options?: AxiosRequestConfig) {
+        return WorkflowsApiFp(this.configuration).getWorkflowsUsingPOST(dto, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
