@@ -20,60 +20,80 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.runforesight.foresight.sdk.client.MemoryMetricDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowJobMetricDtoOfMemoryMetricDto
+ * WorkflowDto
  */
 @JsonPropertyOrder({
-  WorkflowJobMetricDtoOfMemoryMetricDto.JSON_PROPERTY_METRICS
+  WorkflowDto.JSON_PROPERTY_ID,
+  WorkflowDto.JSON_PROPERTY_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
-public class WorkflowJobMetricDtoOfMemoryMetricDto {
-  public static final String JSON_PROPERTY_METRICS = "metrics";
-  private Map<String, MemoryMetricDto> metrics = null;
+public class WorkflowDto {
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto() {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
+  public WorkflowDto() {
   }
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto metrics(Map<String, MemoryMetricDto> metrics) {
+  public WorkflowDto id(String id) {
     
-    this.metrics = metrics;
-    return this;
-  }
-
-  public WorkflowJobMetricDtoOfMemoryMetricDto putMetricsItem(String key, MemoryMetricDto metricsItem) {
-    if (this.metrics == null) {
-      this.metrics = new HashMap<>();
-    }
-    this.metrics.put(key, metricsItem);
+    this.id = id;
     return this;
   }
 
    /**
-   * Get metrics
-   * @return metrics
+   * Get id
+   * @return id
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, MemoryMetricDto> getMetrics() {
-    return metrics;
+  public String getId() {
+    return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetrics(Map<String, MemoryMetricDto> metrics) {
-    this.metrics = metrics;
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public WorkflowDto name(String name) {
+    
+    this.name = name;
+    return this;
+  }
+
+   /**
+   * Get name
+   * @return name
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -85,20 +105,22 @@ public class WorkflowJobMetricDtoOfMemoryMetricDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkflowJobMetricDtoOfMemoryMetricDto workflowJobMetricDtoOfMemoryMetricDto = (WorkflowJobMetricDtoOfMemoryMetricDto) o;
-    return Objects.equals(this.metrics, workflowJobMetricDtoOfMemoryMetricDto.metrics);
+    WorkflowDto workflowDto = (WorkflowDto) o;
+    return Objects.equals(this.id, workflowDto.id) &&
+        Objects.equals(this.name, workflowDto.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metrics);
+    return Objects.hash(id, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkflowJobMetricDtoOfMemoryMetricDto {\n");
-    sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
+    sb.append("class WorkflowDto {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

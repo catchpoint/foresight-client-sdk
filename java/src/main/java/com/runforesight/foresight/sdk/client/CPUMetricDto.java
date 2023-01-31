@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CPUMetricDto.JSON_PROPERTY_CPU_LOAD_TOTAL,
   CPUMetricDto.JSON_PROPERTY_CPU_LOAD_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class CPUMetricDto {
   public static final String JSON_PROPERTY_CPU_LOAD_SYSTEM = "cpuLoadSystem";
   private Double cpuLoadSystem;

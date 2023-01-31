@@ -37,7 +37,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   WorkflowStepHistoryDto.JSON_PROPERTY_STEP_NUMBER,
   WorkflowStepHistoryDto.JSON_PROPERTY_WORKFLOW_STEP_DTO_LIST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class WorkflowStepHistoryDto {
   public static final String JSON_PROPERTY_JOB_NAME = "jobName";
   private String jobName;
