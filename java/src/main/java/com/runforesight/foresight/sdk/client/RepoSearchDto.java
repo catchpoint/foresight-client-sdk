@@ -20,60 +20,90 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.runforesight.foresight.sdk.client.MemoryMetricDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowJobMetricDtoOfMemoryMetricDto
+ * RepoSearchDto
  */
 @JsonPropertyOrder({
-  WorkflowJobMetricDtoOfMemoryMetricDto.JSON_PROPERTY_METRICS
+  RepoSearchDto.JSON_PROPERTY_BRANCHES,
+  RepoSearchDto.JSON_PROPERTY_REPO_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
-public class WorkflowJobMetricDtoOfMemoryMetricDto {
-  public static final String JSON_PROPERTY_METRICS = "metrics";
-  private Map<String, MemoryMetricDto> metrics = null;
+public class RepoSearchDto {
+  public static final String JSON_PROPERTY_BRANCHES = "branches";
+  private List<String> branches = null;
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto() {
+  public static final String JSON_PROPERTY_REPO_ID = "repoId";
+  private String repoId;
+
+  public RepoSearchDto() {
   }
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto metrics(Map<String, MemoryMetricDto> metrics) {
+  public RepoSearchDto branches(List<String> branches) {
     
-    this.metrics = metrics;
+    this.branches = branches;
     return this;
   }
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto putMetricsItem(String key, MemoryMetricDto metricsItem) {
-    if (this.metrics == null) {
-      this.metrics = new HashMap<>();
+  public RepoSearchDto addBranchesItem(String branchesItem) {
+    if (this.branches == null) {
+      this.branches = new ArrayList<>();
     }
-    this.metrics.put(key, metricsItem);
+    this.branches.add(branchesItem);
     return this;
   }
 
    /**
-   * Get metrics
-   * @return metrics
+   * Get branches
+   * @return branches
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_BRANCHES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, MemoryMetricDto> getMetrics() {
-    return metrics;
+  public List<String> getBranches() {
+    return branches;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_BRANCHES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetrics(Map<String, MemoryMetricDto> metrics) {
-    this.metrics = metrics;
+  public void setBranches(List<String> branches) {
+    this.branches = branches;
+  }
+
+
+  public RepoSearchDto repoId(String repoId) {
+    
+    this.repoId = repoId;
+    return this;
+  }
+
+   /**
+   * Get repoId
+   * @return repoId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+  @JsonProperty(JSON_PROPERTY_REPO_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRepoId() {
+    return repoId;
+  }
+
+
+  @JsonProperty(JSON_PROPERTY_REPO_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRepoId(String repoId) {
+    this.repoId = repoId;
   }
 
 
@@ -85,20 +115,22 @@ public class WorkflowJobMetricDtoOfMemoryMetricDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkflowJobMetricDtoOfMemoryMetricDto workflowJobMetricDtoOfMemoryMetricDto = (WorkflowJobMetricDtoOfMemoryMetricDto) o;
-    return Objects.equals(this.metrics, workflowJobMetricDtoOfMemoryMetricDto.metrics);
+    RepoSearchDto repoSearchDto = (RepoSearchDto) o;
+    return Objects.equals(this.branches, repoSearchDto.branches) &&
+        Objects.equals(this.repoId, repoSearchDto.repoId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metrics);
+    return Objects.hash(branches, repoId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkflowJobMetricDtoOfMemoryMetricDto {\n");
-    sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
+    sb.append("class RepoSearchDto {\n");
+    sb.append("    branches: ").append(toIndentedString(branches)).append("\n");
+    sb.append("    repoId: ").append(toIndentedString(repoId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

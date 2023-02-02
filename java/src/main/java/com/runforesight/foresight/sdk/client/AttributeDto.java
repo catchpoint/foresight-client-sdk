@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   AttributeDto.JSON_PROPERTY_OBJECT_VALUE,
   AttributeDto.JSON_PROPERTY_STRING_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class AttributeDto {
   public static final String JSON_PROPERTY_BOOLEAN_VALUE = "booleanValue";
   private Boolean booleanValue;

@@ -33,7 +33,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   MemoryMetricDto.JSON_PROPERTY_MEMORY_USAGE_AVAILABLE,
   MemoryMetricDto.JSON_PROPERTY_MEMORY_USAGE_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class MemoryMetricDto {
   public static final String JSON_PROPERTY_MEMORY_USAGE_ACTIVE = "memoryUsageActive";
   private Double memoryUsageActive;

@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   WorkflowTelemetryRequest.JSON_PROPERTY_META_DATA,
   WorkflowTelemetryRequest.JSON_PROPERTY_TELEMETRY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class WorkflowTelemetryRequest {
   public static final String JSON_PROPERTY_META_DATA = "metaData";
   private Object metaData;

@@ -20,60 +20,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.runforesight.foresight.sdk.client.MemoryMetricDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowJobMetricDtoOfMemoryMetricDto
+ * WatchedRepoFilterDto
  */
 @JsonPropertyOrder({
-  WorkflowJobMetricDtoOfMemoryMetricDto.JSON_PROPERTY_METRICS
+  WatchedRepoFilterDto.JSON_PROPERTY_REPO_ID
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
-public class WorkflowJobMetricDtoOfMemoryMetricDto {
-  public static final String JSON_PROPERTY_METRICS = "metrics";
-  private Map<String, MemoryMetricDto> metrics = null;
+public class WatchedRepoFilterDto {
+  public static final String JSON_PROPERTY_REPO_ID = "repoId";
+  private String repoId;
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto() {
+  public WatchedRepoFilterDto() {
   }
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto metrics(Map<String, MemoryMetricDto> metrics) {
+  public WatchedRepoFilterDto repoId(String repoId) {
     
-    this.metrics = metrics;
-    return this;
-  }
-
-  public WorkflowJobMetricDtoOfMemoryMetricDto putMetricsItem(String key, MemoryMetricDto metricsItem) {
-    if (this.metrics == null) {
-      this.metrics = new HashMap<>();
-    }
-    this.metrics.put(key, metricsItem);
+    this.repoId = repoId;
     return this;
   }
 
    /**
-   * Get metrics
-   * @return metrics
+   * Get repoId
+   * @return repoId
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_REPO_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, MemoryMetricDto> getMetrics() {
-    return metrics;
+  public String getRepoId() {
+    return repoId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_REPO_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetrics(Map<String, MemoryMetricDto> metrics) {
-    this.metrics = metrics;
+  public void setRepoId(String repoId) {
+    this.repoId = repoId;
   }
 
 
@@ -85,20 +74,20 @@ public class WorkflowJobMetricDtoOfMemoryMetricDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkflowJobMetricDtoOfMemoryMetricDto workflowJobMetricDtoOfMemoryMetricDto = (WorkflowJobMetricDtoOfMemoryMetricDto) o;
-    return Objects.equals(this.metrics, workflowJobMetricDtoOfMemoryMetricDto.metrics);
+    WatchedRepoFilterDto watchedRepoFilterDto = (WatchedRepoFilterDto) o;
+    return Objects.equals(this.repoId, watchedRepoFilterDto.repoId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metrics);
+    return Objects.hash(repoId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkflowJobMetricDtoOfMemoryMetricDto {\n");
-    sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
+    sb.append("class WatchedRepoFilterDto {\n");
+    sb.append("    repoId: ").append(toIndentedString(repoId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   RepoSummaryDto.JSON_PROPERTY_NAME,
   RepoSummaryDto.JSON_PROPERTY_OWNER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class RepoSummaryDto {
   public static final String JSON_PROPERTY_DEFAULT_BRANCH = "defaultBranch";
   private String defaultBranch;

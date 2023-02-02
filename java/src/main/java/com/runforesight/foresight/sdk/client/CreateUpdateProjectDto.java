@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   CreateUpdateProjectDto.JSON_PROPERTY_DESCRIPTION,
   CreateUpdateProjectDto.JSON_PROPERTY_PROJECT_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class CreateUpdateProjectDto {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;

@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
   NetworkMetricDto.JSON_PROPERTY_NETWORK_I_O_RX_MB,
   NetworkMetricDto.JSON_PROPERTY_NETWORK_I_O_TX_MB
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-09T13:11:04.618466Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
 public class NetworkMetricDto {
   public static final String JSON_PROPERTY_NETWORK_I_O_RX_MB = "networkIORxMb";
   private Long networkIORxMb;

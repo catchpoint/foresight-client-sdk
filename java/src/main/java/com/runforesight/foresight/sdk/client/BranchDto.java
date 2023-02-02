@@ -20,60 +20,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.runforesight.foresight.sdk.client.MemoryMetricDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * WorkflowJobMetricDtoOfMemoryMetricDto
+ * BranchDto
  */
 @JsonPropertyOrder({
-  WorkflowJobMetricDtoOfMemoryMetricDto.JSON_PROPERTY_METRICS
+  BranchDto.JSON_PROPERTY_BRANCH_NAME
 })
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-01-31T12:24:20.857460Z[Etc/UTC]")
-public class WorkflowJobMetricDtoOfMemoryMetricDto {
-  public static final String JSON_PROPERTY_METRICS = "metrics";
-  private Map<String, MemoryMetricDto> metrics = null;
+public class BranchDto {
+  public static final String JSON_PROPERTY_BRANCH_NAME = "branchName";
+  private String branchName;
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto() {
+  public BranchDto() {
   }
 
-  public WorkflowJobMetricDtoOfMemoryMetricDto metrics(Map<String, MemoryMetricDto> metrics) {
+  public BranchDto branchName(String branchName) {
     
-    this.metrics = metrics;
-    return this;
-  }
-
-  public WorkflowJobMetricDtoOfMemoryMetricDto putMetricsItem(String key, MemoryMetricDto metricsItem) {
-    if (this.metrics == null) {
-      this.metrics = new HashMap<>();
-    }
-    this.metrics.put(key, metricsItem);
+    this.branchName = branchName;
     return this;
   }
 
    /**
-   * Get metrics
-   * @return metrics
+   * Get branchName
+   * @return branchName
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_BRANCH_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Map<String, MemoryMetricDto> getMetrics() {
-    return metrics;
+  public String getBranchName() {
+    return branchName;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_METRICS)
+  @JsonProperty(JSON_PROPERTY_BRANCH_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMetrics(Map<String, MemoryMetricDto> metrics) {
-    this.metrics = metrics;
+  public void setBranchName(String branchName) {
+    this.branchName = branchName;
   }
 
 
@@ -85,20 +74,20 @@ public class WorkflowJobMetricDtoOfMemoryMetricDto {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WorkflowJobMetricDtoOfMemoryMetricDto workflowJobMetricDtoOfMemoryMetricDto = (WorkflowJobMetricDtoOfMemoryMetricDto) o;
-    return Objects.equals(this.metrics, workflowJobMetricDtoOfMemoryMetricDto.metrics);
+    BranchDto branchDto = (BranchDto) o;
+    return Objects.equals(this.branchName, branchDto.branchName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(metrics);
+    return Objects.hash(branchName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WorkflowJobMetricDtoOfMemoryMetricDto {\n");
-    sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
+    sb.append("class BranchDto {\n");
+    sb.append("    branchName: ").append(toIndentedString(branchName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
