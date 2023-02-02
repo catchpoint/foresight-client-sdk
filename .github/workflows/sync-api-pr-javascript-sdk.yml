@@ -47,6 +47,6 @@ jobs:
       - name: git push
         run: git push origin feature/sync-repo-javascript-${{github.run_id}}
       - name: create pull request
-        run: gh pr create -B master -H 'feature/sync-repo-javascript-${{github.run_id}}' --title 'Repo Sync Javascript' --body 'Created by Github action'
+        run: gh pr create -B master -H 'feature/sync-repo-javascript-${{github.run_id}}' --title 'Sync javascript SDK with Foresight API' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.FORESIGHT_GITHUB_TOKEN }}
